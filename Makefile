@@ -6,7 +6,7 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 INC_DIRS = -I. -I$(LIBFT_DIR)
 
-SRCS = ft_printf
+SRCS = ft_printf.c
 OBJS = $(SRCS:.c=.o)
 AR = ar rcs
 

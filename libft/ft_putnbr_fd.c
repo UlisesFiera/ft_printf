@@ -10,23 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*strn;
-	int		i;
+	long int	num;
 
-	strn = ft_itoa(n);
-	if (!strn)
-		return ;
-	i = 0;
-	while (strn[i])
+	num = n;
+	if (num < 0)
 	{
-		write(fd, &strn[i], 1);
-		i++;
+		write(fd, "-", 1);
+		num *= -1;
 	}
-	free (strn);
+	if (num >= 10)
+	{
+		ft_putnbr_fd((num / 10), fd);
+		ft_putchar_fd(num % 10 + '0', fd);
+	}
+	else
+		ft_putchar_fd(num + '0', fd);
 }

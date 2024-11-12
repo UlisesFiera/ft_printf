@@ -22,6 +22,8 @@ int print_str(char *arg)
 	int	count;
 
 	count = 0;
+	if (!arg)
+		return (write(1, "(null)", 6));
 	while (*arg)
 	{
 		count += write(1, arg, 1);
@@ -50,12 +52,33 @@ int	print_digit(long arg, int base)
 	}
 }
 
+int	convert_ptr(uintptr_t address)
+{
+	int		count;
+	char	*symbol;
+
+	count = 0;
+	symbol = "0123456789abcdef";
+
+	if (address < 16)
+		return (print_char(symbol[address]));
+	else
+	{
+		count += convert_ptr(address / 16);
+		return (count + print_char(symbol[address % 16]));
+	}
+}
+
 int	print_ptr(void *arg)
 {
-	long	adress;
+	uintptr_t	adress;
+	int			count;
 
-	adress = (long)arg;
-	return (print_digit(adress, 16));
+	count = 0;
+	adress = (uintptr_t)arg;
+	count = write(1, "0x", 2);
+	count += convert_ptr(adress);
+	return (count);
 }
 
 int	print_un(unsigned long arg, int base)
@@ -123,8 +146,11 @@ int	ft_printf(char const *format, ...)
 	count = 0;
 	while (*format)
 	{
-		if (*format == '%' && *(++format) == '%')
+		if (*format == '%' && *((format + 1)) == '%')
+		{
 			count += write(1, "%", 1);
+			format++; 
+		}
 		else if (*format == '%')
 			count += print_format(*(++format), args);
 		else
@@ -135,20 +161,7 @@ int	ft_printf(char const *format, ...)
 	return (count);
 }
 
-int	main(void)
-{
-	char *str;
-	int	size;
-	int	n;
-	long lo;
 
-	str = "Hello";
-	n = -1000;
-	lo = 3147483647;
-
-	size = ft_printf("This is %%\n");
-	ft_printf("Size is %d\n", size);
-}
 /*
 
 1. We initialize the list of arguments using va_list and va_start. 
@@ -188,5 +201,13 @@ int	main(void)
 	l-> For the unsigneds, we just copy the "print_digit" and change the arguments so it can hold larger values.
 
 X. The final "count" will be the sum of the bytes of each argument + the bytes of the literal string they are into.
+
+*/
+
+/*
+
+V 0.2
+
+Created a separate helper function for printing pointers, because I need to treat them as "uintptr_t".
 
 */
