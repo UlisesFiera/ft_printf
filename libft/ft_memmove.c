@@ -14,22 +14,18 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char		*d_cast;
-	const char	*s_cast;
 	size_t		i;
 
 	if (!dest)
 		return (NULL);
-	d_cast = (char *) dest;
 	if (!src)
 		return (dest);
-	s_cast = (char *) src;
-	if (d_cast < s_cast)
+	if (dest < src)
 	{
 		i = 0;
 		while (i < n)
 		{
-			d_cast[i] = s_cast[i];
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 			i++;
 		}
 	}
@@ -38,7 +34,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		i = n;
 		while (i > 0)
 		{
-			d_cast[i - 1] = s_cast[i - 1];
+			((unsigned char *)dest)[i - 1] = ((unsigned char *)src)[i - 1];
 			i--;
 		}
 	}

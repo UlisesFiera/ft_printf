@@ -6,11 +6,11 @@
 /*   By: ulfernan <ulfernan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:04:22 by ulfernan          #+#    #+#             */
-/*   Updated: 2024/10/02 17:25:22 by ulfernan         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:18:23 by ulfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static unsigned int	uz_strlen(char *str)
+static unsigned int	uz_strlen(const char *str)
 {
 	unsigned int	len;
 
@@ -23,7 +23,7 @@ static unsigned int	uz_strlen(char *str)
 	return (len);
 }
 
-static unsigned int	uz_strnlen(char *str, unsigned int size)
+static unsigned int	uz_strnlen(const char *str, unsigned int size)
 {
 	unsigned int	len;
 
@@ -36,7 +36,7 @@ static unsigned int	uz_strnlen(char *str, unsigned int size)
 	return (len);
 }
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size)
 {
 	unsigned int	dest_len;
 	unsigned int	src_len;
