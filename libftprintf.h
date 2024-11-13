@@ -1,12 +1,12 @@
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-#include "libft/libft.h"
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include "libft/libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-int     ft_printf(char const *, ...);
+int	ft_printf(char const *, ...);
 int	print_char(int arg);
 int	print_digit(long arg, int base);
 int	print_ptr(void *arg);

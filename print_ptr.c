@@ -7,7 +7,6 @@ int	convert_ptr(uintptr_t address)
 
 	count = 0;
 	symbol = "0123456789abcdef";
-
 	if (address < 16)
 		return (print_char(symbol[address]));
 	else

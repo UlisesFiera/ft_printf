@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-int print_str(char *arg)
+int	print_str(char *arg)
 {
 	int	count;
 
