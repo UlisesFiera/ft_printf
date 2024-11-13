@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-int	convert_ptr(uintptr_t address)
+int	convert_ptr(unsigned long address)
 {
 	int		count;
 	char	*symbol;
@@ -18,11 +18,13 @@ int	convert_ptr(uintptr_t address)
 
 int	print_ptr(void *arg)
 {
-	uintptr_t	adress;
-	int			count;
+	unsigned long	adress;
+	int				count;
 
+	if (arg == 0)
+		return (write(1, "(nil)", 5));
 	count = 0;
-	adress = (uintptr_t)arg;
+	adress = (unsigned long)arg;
 	count = write(1, "0x", 2);
 	count += convert_ptr(adress);
 	return (count);
